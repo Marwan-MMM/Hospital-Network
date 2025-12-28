@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard - Hospital Network</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Hospital Network</div>
+    <nav class="nav-desktop">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard -->
+  <main class="dashboard">
+    <h1>Welcome to Your Patient Dashboard</h1>
+    <p class="dashboard-note">Here you can view your appointments, records, and manage your profile.</p>
+
+    <!-- Appointments -->
+    <section class="appointments-dashboard">
+      <h2>My Appointments</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th><th>Time</th><th>Department</th><th>Doctor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2025-01-10</td><td>10:00 AM</td><td>Cardiology</td><td>Dr. Aisha</td></tr>
+          <tr><td>2025-01-15</td><td>02:30 PM</td><td>Pediatrics</td><td>Dr. Omar</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Medical Records -->
+    <section class="records">
+      <h2>Medical Records</h2>
+      <ul>
+        <li>Blood Test – Normal (Dec 2025)</li>
+        <li>X-Ray – Clear (Nov 2025)</li>
+      </ul>
+    </section>
+
+    <!-- Profile Update -->
+    <section class="profile">
+      <h2>Update Profile</h2>
+      <form class="profile-form">
+        <input type="text" placeholder="Full Name" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="text" placeholder="Address" required>
+        <button type="submit" class="cta">Save</button>
+        <div class="form-message" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <!-- Contact Doctor -->
+    <section class="contact-doctor">
+      <h2>Contact a Doctor</h2>
+      <form class="contact-form">
+        <select required>
+          <option value="">Select Doctor</option>
+          <option>Dr. Aisha</option>
+          <option>Dr. Omar</option>
+          <option>Dr. Sara</option>
+        </select>
+        <textarea placeholder="Write your message..." required></textarea>
+        <button type="submit" class="cta">Send</button>
+        <div class="form-message" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Hospital Network | All Rights Reserved</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

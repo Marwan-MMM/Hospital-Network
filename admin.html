@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Hospital Network</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Hospital Network</div>
+    <nav class="nav-desktop">
+      <a href="index.html">Home</a>
+      <a href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Admin Dashboard -->
+  <main class="dashboard">
+    <h1>Admin Dashboard</h1>
+    <p class="dashboard-note">Manage appointments, doctors, and patient records.</p>
+
+    <!-- Manage Appointments -->
+    <section class="admin-appointments">
+      <h2>Appointments Management</h2>
+      <table>
+        <thead>
+          <tr><th>Patient</th><th>Date</th><th>Time</th><th>Department</th><th>Doctor</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fatima</td><td>2025-01-10</td><td>10:00 AM</td><td>Cardiology</td><td>Dr. Aisha</td>
+            <td><button class="cta">Approve</button> <button class="cta">Cancel</button></td>
+          </tr>
+          <tr>
+            <td>Ahmed</td><td>2025-01-15</td><td>02:30 PM</td><td>Pediatrics</td><td>Dr. Omar</td>
+            <td><button class="cta">Approve</button> <button class="cta">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Manage Doctors -->
+    <section class="admin-doctors">
+      <h2>Doctors Directory</h2>
+      <ul>
+        <li>Dr. Aisha – Cardiology <button class="cta">Edit</button></li>
+        <li>Dr. Omar – Pediatrics <button class="cta">Edit</button></li>
+        <li>Dr. Sara – Dermatology <button class="cta">Edit</button></li>
+      </ul>
+    </section>
+
+    <!-- Patient Records -->
+<section class="admin-records">
+  <h2>Patient Records</h2>
+  <p>View or update patient medical records.</p>
+  <button class="cta" id="recordsBtn">Access Records</button>
+
+  <!-- Hidden records container -->
+  <div id="recordsContainer" class="records-container" style="display:none;">
+    <h3>Records for Fatima</h3>
+    <ul>
+      <li>Blood Test – Normal (Dec 2025)</li>
+      <li>X-Ray – Clear (Nov 2025)</li>
+    </ul>
+
+    <h3>Records for Ahmed</h3>
+    <ul>
+      <li>Allergy Test – Mild reaction (Oct 2025)</li>
+      <li>Vaccination – Up to date</li>
+    </ul>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Hospital Network | Admin Access</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

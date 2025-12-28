@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Network</title>
+  <meta name="description" content="Trusted hospital network providing healthcare services, doctors directory, and patient portal." />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+ <!-- Accessibility Controls -->
+<div class="accessibility-controls">
+  <button onclick="increaseFont()">A+</button>
+  <button onclick="decreaseFont()">A-</button>
+</div>
+
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Hospital Network</div>
+    <nav class="nav-desktop">
+      <a href="#about">About Us</a>
+      <a href="#departments">Departments</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#appointments">Appointments</a>
+      <a href="#emergency">Emergency</a>
+      <a href="#news">News</a>
+      <a href="login.html">Patient Portal</a>
+    </nav>
+    <!-- Global Search -->
+    <form class="global-search" role="search">
+      <input type="search" placeholder="Search doctors, departments, FAQs…" aria-label="Search site">
+      <button type="submit">🔍</button>
+    </form>
+    <button class="lang-toggle" aria-label="Toggle language">العربية / EN</button>
+    <button id="menu-btn" class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <!-- Breadcrumbs (example for subpages like Patient Portal) -->
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <a href="index.html">Home</a> › 
+    <a href="login.html">Patient Portal</a> › 
+    <span>Login</span>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu hidden" aria-label="Mobile navigation">
+    <a href="#about">About Us</a>
+    <a href="#departments">Departments</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#appointments">Appointments</a>
+    <a href="#emergency">Emergency</a>
+    <a href="#news">News</a>
+    <a href="login.html">Patient Portal</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Trust Your Care With Us</h1>
+    <p>Compassionate healthcare across our hospital and clinic network</p>
+    <a href="#appointments" class="cta" aria-label="Book appointment">Book Appointment</a>
+    <p class="hotline">Emergency Hotline: <a href="tel:123456789">123-456-789</a></p>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="quick-links">
+    <a href="#emergency" class="link emergency" aria-label="Emergency Hotline">Emergency Hotline</a>
+    <a href="#appointments" class="link appointment" aria-label="Book Appointment">Book Appointment</a>
+    <a href="#doctors" class="link doctor" aria-label="Find a Doctor">Find a Doctor</a>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="about">
+    <h2>About Our Network</h2>
+    <p>We provide healthcare services across multiple hospitals and clinics, with a mission to deliver safe, compassionate, and accessible care for all patients.</p>
+  </section>
+
+  <!-- Departments -->
+  <section id="departments" class="departments">
+    <h2>Departments & Services</h2>
+    <div class="department-grid">
+      <!-- department cards -->
+      <article class="department-card"><img src="heart-beat.png" alt="Cardiology Icon">Cardiology</article>
+      <article class="department-card"><img src="baby.png" alt="Pediatrics Icon">Pediatrics</article>
+      <article class="department-card"><img src="scalpel.png" alt="Surgery Icon">Surgery</article>
+      <article class="department-card"><img src="x-ray.png" alt="Radiology Icon">Radiology</article>
+      <article class="department-card"><img src="orthopedics.png" alt="Orthopedics Icon">Orthopedics</article>
+      <article class="department-card"><img src="dermatology.png" alt="Dermatology Icon">Dermatology</article>
+      <article class="department-card"><img src="brain.png" alt="Neurology Icon">Neurology</article>
+      <article class="department-card"><img src="eye-clinic.png" alt="Ophthalmology Icon">Ophthalmology</article>
+    </div>
+  </section>
+
+  <!-- Doctors Directory -->
+  <section id="doctors" class="doctors">
+    <h2>Our Doctors</h2>
+    <select id="specialty-filter" aria-label="Filter by specialty">
+      <option value="">All Specialties</option>
+      <option>Cardiologist</option>
+      <option>Pediatrician</option>
+      <option>Dermatologist</option>
+      <option>Orthopedics</option>
+      <option>Radiology</option>
+    </select>
+    <input type="text" id="doctor-search" placeholder="Search by name..." aria-label="Search by doctor name" />
+    <div class="doctor-grid">
+      <!-- doctor cards -->
+      <article class="doctor-card"><h3>Dr. Aisha</h3><p>Cardiologist</p><button class="cta">Book Appointment</button></article>
+      <article class="doctor-card"><h3>Dr. Omar</h3><p>Pediatrician</p><button class="cta">Book Appointment</button></article>
+      <article class="doctor-card"><h3>Dr. Sara</h3><p>Dermatologist</p><button class="cta">Book Appointment</button></article>
+      <article class="doctor-card"><h3>Dr. Ahmed</h3><p>Orthopedics</p><button class="cta">Book Appointment</button></article>
+      <article class="doctor-card"><h3>Dr. Lina</h3><p>Radiology</p><button class="cta">Book Appointment</button></article>
+    </div>
+  </section>
+
+  <!-- Appointment Form -->
+  <section id="appointments" class="appointments">
+    <h2>Book an Appointment</h2>
+    <div class="appointment-card">
+      <form class="appointment-form">
+        <input type="text" placeholder="Full Name" required aria-label="Full Name">
+        <input type="email" placeholder="Email Address" required aria-label="Email Address">
+        <select required aria-label="Select Department">
+          <option value="">Select Department</option>
+          <option>Cardiology</option>
+          <option>Pediatrics</option>
+          <option>Surgery</option>
+          <option>Radiology</option>
+          <option>Orthopedics</option>
+          <option>Dermatology</option>
+          <option>Neurology</option>
+          <option>Ophthalmology</option>
+        </select>
+        <input type="date" required aria-label="Appointment Date">
+        <input type="time" required aria-label="Appointment Time">
+        <button type="submit" class="cta">Submit</button>
+        <div class="spinner" style="display:none;" aria-hidden="true"></div>
+        <!-- Inline success/error message container -->
+        <div class="form-message" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Emergency -->
+  <section id="emergency" class="emergency">
+    <h2>Emergency Services</h2>
+    <p>Call our 24/7 hotline: <strong>123-456-789</strong></p>
+    <iframe src="https://maps.google.com/maps?q=alexandria%20hospital&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" aria-label="Hospital location map"></iframe>
+  </section>
+
+  <!-- Floating Quick Links (always visible on mobile) -->
+  <div class="floating-buttons">
+    <a href="tel:123456789" class="cta emergency">📞 Emergency</a>
+    <a href="#appointments" class="cta">📅 Book</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Hospital Network | All Rights Reserved</p>
+    <p>📍 123 Main Street, Alexandria, Egypt</p>
+    <p>📞 <a href="tel:123456789">123-456-789</a> | ✉️ <a href="mailto:info@hospitalnetwork.com">info@hospitalnetwork.com</a></p>
+    <p>
+      <a href="#" aria-label="Facebook"><img src="facebook.png" alt="Facebook" /></a>
+      <a href="#" aria-label="Twitter"><img src="twitter.png" alt="Twitter" /></a>
+      <a href="#" aria-label="Instagram"><img src="instagram.png" alt="Instagram" /></a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="index.js"></script>
+</body>
+</html>
