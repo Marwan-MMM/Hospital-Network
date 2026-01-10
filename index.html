@@ -7,14 +7,12 @@
   <meta name="description" content="Trusted hospital network providing healthcare services, doctors directory, and patient portal." />
   <link rel="icon" href="favicon.ico" />
   <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Mulish:wght@600;700&family=Work+Sans:wght@600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
- <!-- Accessibility Controls -->
-<div class="accessibility-controls">
-  <button onclick="increaseFont()">A+</button>
-  <button onclick="decreaseFont()">A-</button>
-</div>
+
 
 
   <!-- Header -->
@@ -26,7 +24,6 @@
       <a href="#doctors">Doctors</a>
       <a href="#appointments">Appointments</a>
       <a href="#emergency">Emergency</a>
-      <a href="#news">News</a>
       <a href="login.html">Patient Portal</a>
     </nav>
     <!-- Global Search -->
@@ -52,9 +49,7 @@
     <a href="#doctors">Doctors</a>
     <a href="#appointments">Appointments</a>
     <a href="#emergency">Emergency</a>
-    <a href="#news">News</a>
     <a href="login.html">Patient Portal</a>
-    <a href="contact.html">Contact</a>
   </div>
 
   <!-- Hero Section -->
@@ -96,15 +91,24 @@
 
   <!-- Doctors Directory -->
   <section id="doctors" class="doctors">
-    <h2>Our Doctors</h2>
-    <select id="specialty-filter" aria-label="Filter by specialty">
+  <h2>Our Doctors</h2>
+
+  <label for="specialty-filter" class="filter-label">
+    Filter by Specialty
+  </label>
+
+  <div class="select-wrapper">
+    <select id="specialty-filter">
       <option value="">All Specialties</option>
-      <option>Cardiologist</option>
-      <option>Pediatrician</option>
-      <option>Dermatologist</option>
-      <option>Orthopedics</option>
-      <option>Radiology</option>
+      <option value="cardiology">Cardiology</option>
+      <option value="pediatrics">Pediatrics</option>
+      <option value="dermatology">Dermatology</option>
+      <option value="orthopedics">Orthopedics</option>
+      <option value="radiology">Radiology</option>
     </select>
+  </div>
+</section>
+
     <input type="text" id="doctor-search" placeholder="Search by name..." aria-label="Search by doctor name" />
     <div class="doctor-grid">
       <!-- doctor cards -->
@@ -162,11 +166,6 @@
     <p>© 2025 Hospital Network | All Rights Reserved</p>
     <p>📍 123 Main Street, Alexandria, Egypt</p>
     <p>📞 <a href="tel:123456789">123-456-789</a> | ✉️ <a href="mailto:info@hospitalnetwork.com">info@hospitalnetwork.com</a></p>
-    <p>
-      <a href="#" aria-label="Facebook"><img src="facebook.png" alt="Facebook" /></a>
-      <a href="#" aria-label="Twitter"><img src="twitter.png" alt="Twitter" /></a>
-      <a href="#" aria-label="Instagram"><img src="instagram.png" alt="Instagram" /></a>
-    </p>
   </footer>
 
   <!-- Scripts -->

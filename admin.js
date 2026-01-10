@@ -5,40 +5,61 @@ window.addEventListener("DOMContentLoaded", () => {
     alert("⚠️ Unauthorized access. Redirecting to login.");
     window.location.href = "login.html";
   }
+
+  // Load appointments from localStorage
+  const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+  const tableBody = document.getElementById("appointmentsTable");
+
+  if (tableBody) {
+    tableBody.innerHTML = "";
+
+    if (appointments.length === 0) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td colspan="6">No appointments found.</td>`;
+      tableBody.appendChild(row);
+    } else {
+      appointments.forEach((app, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${app.fullName}</td>
+          <td>${app.date}</td>
+          <td>${app.time}</td>
+          <td>${app.department}</td>
+          <td>${app.doctor || "Pending Assignment"}</td>
+          <td>
+            <span class="status">${app.status || "Pending"}</span>
+            <button class="cta approve">Approve</button>
+            <button class="cta cancel">Cancel</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+
+        const approveBtn = row.querySelector(".approve");
+        const cancelBtn = row.querySelector(".cancel");
+        const statusSpan = row.querySelector(".status");
+
+        approveBtn.addEventListener("click", () => {
+          appointments[index].status = "Approved";
+          localStorage.setItem("appointments", JSON.stringify(appointments));
+          statusSpan.textContent = "Approved";
+          statusSpan.style.color = "#22c55e";
+        });
+
+        cancelBtn.addEventListener("click", () => {
+          appointments[index].status = "Cancelled";
+          localStorage.setItem("appointments", JSON.stringify(appointments));
+          statusSpan.textContent = "Cancelled";
+          statusSpan.style.color = "#ef4444";
+        });
+      });
+    }
+  }
 });
 
-// Logout helper (clears role)
+// Logout helper
 function logout() {
   localStorage.removeItem("userRole");
 }
-
-// Appointment management buttons
-document.querySelectorAll('.admin-appointments tr').forEach(row => {
-  const approveBtn = row.querySelector('button:nth-child(1)');
-  const cancelBtn = row.querySelector('button:nth-child(2)');
-
-  if (approveBtn) {
-    approveBtn.addEventListener('click', () => {
-      approveBtn.textContent = "Approved";
-      approveBtn.style.backgroundColor = "#22c55e"; // green
-      approveBtn.style.color = "#fff";
-      cancelBtn.textContent = "Cancel";
-      cancelBtn.style.backgroundColor = "";
-      cancelBtn.style.color = "";
-    });
-  }
-
-  if (cancelBtn) {
-    cancelBtn.addEventListener('click', () => {
-      approveBtn.textContent = "Cancelled";
-      approveBtn.style.backgroundColor = "#ef4444"; // red
-      approveBtn.style.color = "#fff";
-      cancelBtn.textContent = "Cancelled";
-      cancelBtn.style.backgroundColor = "#ef4444";
-      cancelBtn.style.color = "#fff";
-    });
-  }
-});
 
 // Doctor management buttons
 document.querySelectorAll('.admin-doctors .cta').forEach(btn => {
@@ -46,7 +67,6 @@ document.querySelectorAll('.admin-doctors .cta').forEach(btn => {
     const li = btn.parentElement;
     const currentText = li.firstChild.textContent.trim();
 
-    // Replace text with editable input
     const input = document.createElement("input");
     input.type = "text";
     input.value = currentText;
@@ -56,7 +76,6 @@ document.querySelectorAll('.admin-doctors .cta').forEach(btn => {
     saveBtn.textContent = "Save";
     saveBtn.className = "cta";
 
-    // Clear existing content and append input + save
     li.innerHTML = "";
     li.appendChild(input);
     li.appendChild(saveBtn);
@@ -64,7 +83,6 @@ document.querySelectorAll('.admin-doctors .cta').forEach(btn => {
     saveBtn.addEventListener("click", () => {
       const newText = input.value.trim();
       li.innerHTML = `${newText} <button class="cta">Edit</button>`;
-      // Reattach edit functionality
       li.querySelector("button").addEventListener("click", () => {
         alert(`Editing doctor: ${newText}`);
       });
@@ -72,7 +90,7 @@ document.querySelectorAll('.admin-doctors .cta').forEach(btn => {
   });
 });
 
-// Patient records button
+// Patient records toggle
 const recordBtn = document.getElementById('recordsBtn');
 const recordsContainer = document.getElementById('recordsContainer');
 
@@ -87,4 +105,3 @@ if (recordBtn && recordsContainer) {
     }
   });
 }
-

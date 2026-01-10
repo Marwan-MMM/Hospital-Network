@@ -44,36 +44,59 @@ if (appointmentForm) {
   appointmentForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    const nameInput = appointmentForm.querySelector('input[type="text"]');
     const emailInput = appointmentForm.querySelector('input[type="email"]');
+    const deptSelect = appointmentForm.querySelector('select');
     const dateInput = appointmentForm.querySelector('input[type="date"]');
     const timeInput = appointmentForm.querySelector('input[type="time"]');
     const spinner = appointmentForm.querySelector('.spinner');
 
     // Validation
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
-    const dateValid = new Date(dateInput.value) >= new Date();
-    const timeValid = timeInput.value !== "";
+    if (!nameInput.value.trim() || !emailInput.value.trim() || !deptSelect.value || !dateInput.value || !timeInput.value) {
+      showFormMessage("error", "❌ Please fill in all fields.");
+      return;
+    }
 
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
     if (!emailValid) {
       showFormMessage("error", "❌ Please enter a valid email address.");
       return;
     }
+
+    const dateValid = new Date(dateInput.value) >= new Date();
     if (!dateValid) {
       showFormMessage("error", "❌ Please select a future date.");
-      return;
-    }
-    if (!timeValid) {
-      showFormMessage("error", "❌ Please select a time.");
       return;
     }
 
     // Show spinner
     spinner.style.display = "block";
+    showFormMessage("", "");
 
     setTimeout(() => {
       spinner.style.display = "none";
       showFormMessage("success", "✅ Appointment booked successfully! We will contact you soon.");
+
+      // Save appointment to localStorage (with default status)
+      const appointment = {
+        fullName: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        department: deptSelect.value,
+        date: dateInput.value,
+        time: timeInput.value,
+        status: "Pending" // <-- Added status field
+      };
+      let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+      appointments.push(appointment);
+      localStorage.setItem("appointments", JSON.stringify(appointments));
+
+      // Reset form
       appointmentForm.reset();
+
+      // Clear message after 3 seconds
+      setTimeout(() => {
+        showFormMessage("", "");
+      }, 3000);
     }, 2000); // simulate loading
   });
 }
@@ -123,7 +146,6 @@ function decreaseFont() {
   const currentSize = parseFloat(window.getComputedStyle(document.body).fontSize);
   document.body.style.fontSize = (currentSize * 0.9) + "px";
 }
-
 
 // Language Toggle (English ↔ Arabic + Direction + Persistence)
 const langToggle = document.querySelector('.lang-toggle');
@@ -182,7 +204,7 @@ function switchLanguage() {
   // Header
   document.querySelector(".logo").textContent = t.logo;
   document.querySelectorAll(".nav-desktop a").forEach((a,i)=>{ if(t.nav[i]) a.textContent = t.nav[i]; });
-  document.querySelectorAll("#mobile-menu a").forEach((a,i)=>{ if(t.nav[i]) a.textContent = t.nav[i]; });
+    document.querySelectorAll("#mobile-menu a").forEach((a,i)=>{ if(t.nav[i]) a.textContent = t.nav[i]; });
 
   // Hero
   document.querySelector(".hero h1").textContent = t.heroTitle;
@@ -201,7 +223,7 @@ function switchLanguage() {
   document.querySelector("#departments h2").textContent = t.departmentsTitle;
   document.querySelectorAll(".department-card").forEach((card,i)=>{ if(t.departments[i]) card.lastChild.textContent = t.departments[i]; });
 
-   // Doctors
+  // Doctors
   document.querySelector("#doctors h2").textContent = t.doctorsTitle;
   document.querySelectorAll("#specialty-filter option").forEach((opt,i)=>{ if(t.specialtiesFilter[i]) opt.textContent = t.specialtiesFilter[i]; });
   document.querySelectorAll(".doctor-card p").forEach((p,i)=>{ if(t.doctorSpecialties[i]) p.textContent = t.doctorSpecialties[i]; });
